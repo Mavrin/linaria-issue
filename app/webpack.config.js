@@ -42,6 +42,7 @@ const config = {
                 [
                   "@linaria",
                   {
+                    babelOptions: { presets: ["@babel/preset-typescript"] },
                     rules: [
                       {
                         action: require("@linaria/shaker").default,
@@ -52,27 +53,36 @@ const config = {
                       },
                       {
                         action: require("@linaria/shaker").default,
-                        test: /\/node_modules\/package-with-linaria-styles\//,
+                        test: /\/node_modules\/@myspace\/package-with-linaria-styles\//,
                       },
                     ],
-                    /*resolveOptions: {
-                      alias: {lodash: require.resolve("lodash")},
-                      modules: ["node_modules"],
-                    }*/
                   },
                 ],
               ],
             },
           },
-          // {
-          //   loader: "@linaria/webpack-loader",
-          //   options: {
-          //     babelOptions: {
-          //       babelrc: false,
-          //       presets:["@babel/preset-typescript", "@babel/preset-env"],
-          //     }
-          //   }
-          // }
+          {
+            loader: "@linaria/webpack-loader",
+            options: {
+              babelOptions: {
+                babelrc: false,
+                presets:["@babel/preset-typescript"],
+              },
+              rules: [
+                {
+                  action: require("@linaria/shaker").default,
+                },
+                {
+                  action: "ignore",
+                  test: /\/node_modules\//,
+                },
+                {
+                  action: require("@linaria/shaker").default,
+                  test: /\/node_modules\/@myspace\/package-with-linaria-styles\//,
+                },
+              ],
+            }
+          }
         ],
       },
       {

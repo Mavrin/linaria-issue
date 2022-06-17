@@ -1,5 +1,5 @@
 {
-  "name": "package-with-linaria-styles",
+  "name": "@myspace/package-with-linaria-styles",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
