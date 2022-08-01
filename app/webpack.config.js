@@ -11,7 +11,7 @@ const stylesHandler = isProduction
   : "style-loader";
 
 const config = {
-  entry: "./src/index.ts",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
   },
@@ -38,11 +38,24 @@ const config = {
               babelrc: false,
               presets: [
                 "@babel/preset-typescript",
+                [
+                  require.resolve("@babel/preset-react"),
+                  {
+                    useBuiltIns: true,
+                   // runtime: "automatic",
+                  },
+                ],
                 ["@babel/preset-env", { modules: false }],
                 [
                   "@linaria",
                   {
-                    babelOptions: { presets: ["@babel/preset-typescript"] },
+                    babelOptions: { presets: ["@babel/preset-typescript", [
+                        require.resolve("@babel/preset-react"),
+                        {
+                          useBuiltIns: true,
+                          runtime: "automatic",
+                        },
+                      ],] },
                     rules: [
                       {
                         action: require("@linaria/shaker").default,
@@ -66,7 +79,13 @@ const config = {
             options: {
               babelOptions: {
                 babelrc: false,
-                presets:["@babel/preset-typescript"],
+                presets:["@babel/preset-typescript", [
+                  require.resolve("@babel/preset-react"),
+                  {
+                    useBuiltIns: true,
+                    runtime: "automatic",
+                  },
+                ],],
               },
               rules: [
                 {

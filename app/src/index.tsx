@@ -23,12 +23,25 @@ const greyContentStyles = css`
   }
 `;
 
+function Root() {
+  return <div>sss</div>
+}
+
+
+function render() {
+
+}
+
+function renderApp(App, defaultParams = {}) {
+  const reactElement = <Root></Root>;
+  const rootElement = document.getElementById("root");
+  render(reactElement, rootElement);
+  rootElement.dataset.rendered = "true";
+}
+
 document.querySelector("h2")?.classList.add(defaultStyle, greenContentStyles);
 document.querySelector("h1")?.classList.add(someClassName, greyContentStyles);
 
-function renderApp(App : any, defaultParams = {}) {
-  return App;
-}
 
 /*if (module.hot) {
   module.hot.accept("./components/App", () => {
